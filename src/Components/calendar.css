@@ -1,0 +1,88 @@
+.calendar-container {
+	width: 40%;
+	font-size: 1.5rem;
+}
+
+.calendar-container h1 {
+	font-size: 4.5rem;
+	font-family: 'Oxanium', sans-serif;
+	font-weight: 800;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 0.2rem;
+}
+
+.calendar-month-year {
+	display: flex;
+	align-items: center;
+	margin: 3rem;
+}
+
+.calendar-month-year div {
+	display: flex;
+	column-gap: 3rem;
+	margin-left: auto;
+}
+
+.calendar-month-year button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5rem;
+	background-color: rgb(184, 184, 184);
+	transition: background-color 0.4s;
+}
+
+.calendar-month-year button:hover {
+	background-color: #eda6c4;
+}
+
+.calendar-month-year i {
+	font-size: 2rem;
+}
+
+.calendar-month-year h2 {
+	font-size: 2.2rem;
+}
+
+.calendar-month-year h2:nth-child(2) {
+	margin-left: 1rem;
+}
+
+.calendar-daysofweek {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 1rem;
+	font-size: 1.5rem;
+}
+
+.calendar-daysofweek span {
+	color: #9999;
+	text-align: center;
+}
+
+.calendar-daysofmonth {
+	display: grid;
+    align-items: center;
+	grid-template-columns: repeat(7, 1fr);
+    row-gap: 1rem;
+}
+
+.calendar-daysofmonth-hidden{
+	visibility: hidden;
+}
+
+.calendar-daysofmonth button{
+    width: 70%;
+    aspect-ratio: 1/1;
+	margin-left: auto;
+    margin-right: auto;
+	font-size: 1.5rem;
+	transition: background-color .3s, box-shadow .4s;
+}	
+
+.calendar-daysofmonth button:hover {
+	background-color: #eda6c4;
+	box-shadow: 0 0 0.3rem 0 #e478a5;
+
+}
