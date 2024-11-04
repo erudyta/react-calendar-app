@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+:root{
+    --main-color: #E6D1F2;
+    --bg-btn-color: #c7c7c7;
+    --border-btn-color: #9c9c9c;
+}
+
 html{
     font-size: 10px;
     font-family: 'Poppins', sans-serif;
@@ -28,7 +34,7 @@ button{
 .container {
     display: flex;
     flex-direction: row;
-    column-gap: 3rem;
+    column-gap: 5rem;
     width: 70%;
     height: 65vh;
     padding: 2rem;

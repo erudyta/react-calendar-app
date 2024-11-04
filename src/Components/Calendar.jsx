@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './calendar.css'
 
 const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 const months = [
@@ -17,6 +16,7 @@ const months = [
 	'December',
 ]
 
+import './calendar.css'
 const Calendar = () => {
 	const date = new Date() //returns actual date
 	const [currMonth, setCurrMonth] = useState(date.getMonth()) //Current Month
