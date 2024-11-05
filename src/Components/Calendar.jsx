@@ -17,44 +17,22 @@ const months = [
 ]
 
 import './calendar.css'
-const Calendar = () => {
-	const date = new Date() //returns actual date
-	const [currMonth, setCurrMonth] = useState(date.getMonth()) //Current Month
-	const [currYear, setCurrYear] = useState(date.getFullYear()) //Current Year
-
-
-	let firstDay = new Date(currYear, currMonth, 1).getDay() //returns what is the first day of the month
-	const numberOfDaysInMonth = new Date(currYear, currMonth + 1, 0).getDate() //returns the maximum number of days in a month
-
-	const arrNunumberOfDaysInMonth = new Array(numberOfDaysInMonth).fill('')
-
-	// 0 - pn, 1- wt, 2- sr, 3 - czw, 4 - pt, 5 -sb, 6- nd
-	let arrBlankPlacesInCalendar = []
-	if (firstDay > 0) {
-		firstDay = firstDay - 1
-		arrBlankPlacesInCalendar = new Array(firstDay).fill('')
-	} else if (firstDay === 0) {
-		firstDay = 6
-		arrBlankPlacesInCalendar = new Array(firstDay).fill('')
+const Calendar = ({
+	date,
+	currMonth,
+	currYear,
+	arrBlankPlacesInCalendar,
+	arrNumberOfDaysInMonth,
+	onMinusMonth,
+	onPlusMonth,
+	setSelectedDay,
+	selectedDay,
+}) => {
+	function handleButtonDay(day) {
+		setSelectedDay(prev => day.id)
 	}
 
-	const handlePlusMonth = () => {
-		if (currMonth === 11) {
-			setCurrYear(prev => prev + 1)
-			setCurrMonth(0)
-		} else {
-			setCurrMonth(prev => prev + 1)
-		}
-	}
-
-	const handleMinusMonth = () => {
-		if (currMonth === 0) {
-			setCurrYear(prev => prev - 1)
-			setCurrMonth(11)
-		} else {
-			setCurrMonth(prev => prev - 1)
-		}
-	}
+	const arrSelectedDate = selectedDay.split('.') // [0] - day, [1] - month, [2] - year
 
 	return (
 		<div className='calendar-container'>
@@ -63,10 +41,10 @@ const Calendar = () => {
 				<h2>{months[currMonth]}, </h2>
 				<h2> {currYear}</h2>
 				<div>
-					<button onClick={handleMinusMonth}>
+					<button onClick={onMinusMonth}>
 						<i className='bx bx-left-arrow-alt'></i>
 					</button>
-					<button onClick={handlePlusMonth}>
+					<button onClick={onPlusMonth}>
 						<i className='bx bx-right-arrow-alt'></i>
 					</button>
 				</div>
@@ -80,8 +58,24 @@ const Calendar = () => {
 				{arrBlankPlacesInCalendar.map((blank, index) => (
 					<button key={index} className='calendar-daysofmonth-hidden'></button>
 				))}
-				{arrNunumberOfDaysInMonth.map((day, index) => (
-					<button key={index}>{index + 1}</button>
+				{arrNumberOfDaysInMonth.map((day, dayNumber) => (
+					<button
+						className={`
+							${
+								dayNumber + 1 === date.getDate() && currMonth === date.getMonth() && currYear === date.getFullYear()
+									? 'curr-day'
+									: ''
+							}
+							${
+								dayNumber + 1 === parseInt(arrSelectedDate[0]) && currMonth === parseInt(arrSelectedDate[1]) && currYear === parseInt(arrSelectedDate[2])
+								? 'selected-day'
+								: ''
+							}
+							`}
+						onClick={() => handleButtonDay(day)}
+						key={dayNumber}>
+						{dayNumber + 1}
+					</button>
 				))}
 			</div>
 		</div>

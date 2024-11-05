@@ -1,14 +1,32 @@
 import './selected-day.css'
 
-const SelectedDay = () => {
+const months = [
+	'January',
+	'Februrary',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December',
+]
+
+const SelectedDay = ({ selectedDay }) => {
+	const arrDate = selectedDay.split('.') // [0] - day, [1] - month, [2] - year
+
+	
 	return (
 		<>
 			<div className='sd-container'>
 				<div className='sd-navigate'>
 					<div>
-						<h2>Day</h2>
-						<h2>Month</h2>
-						<h2>Year</h2>
+						<h2>{arrDate[0]}</h2>
+						<h2>{months[arrDate[1]]}</h2>
+						<h2>{arrDate[2]}</h2>
 					</div>
 					<button className='btn-create-event'>Create Event</button>
 				</div>
@@ -63,7 +81,6 @@ const SelectedDay = () => {
 								</button>
 							</div>
 						</div>
-						
 					</div>
 				</div>
 			</div>

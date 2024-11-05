@@ -79,11 +79,17 @@
 	margin-left: auto;
     margin-right: auto;
 	font-size: 1.5rem;
-	transition: background-color .3s, box-shadow .4s;
+	transition: background-color .1s, box-shadow .2s;
 }	
 
-.calendar-daysofmonth button:hover {
+
+.calendar-daysofmonth button.curr-day{
 	background-color: var(--main-color);
 	box-shadow: 0 0 0.3rem 0 #e478a5;
+}
 
+.calendar-daysofmonth button.selected-day,
+.calendar-daysofmonth button:hover{
+	background-color: var(--selected-day);
+	box-shadow: 0 0 0.3rem 0 #000000;
 }
