@@ -27,6 +27,7 @@ const Calendar = ({
 	onPlusMonth,
 	setSelectedDay,
 	selectedDay,
+	setShowPopup,
 }) => {
 	function handleButtonDay(day) {
 		setSelectedDay(prev => day.id)
@@ -67,12 +68,17 @@ const Calendar = ({
 									: ''
 							}
 							${
-								dayNumber + 1 === parseInt(arrSelectedDate[0]) && currMonth === parseInt(arrSelectedDate[1]) && currYear === parseInt(arrSelectedDate[2])
-								? 'selected-day'
-								: ''
+								dayNumber + 1 === parseInt(arrSelectedDate[0]) &&
+								currMonth === parseInt(arrSelectedDate[1]) &&
+								currYear === parseInt(arrSelectedDate[2])
+									? 'selected-day'
+									: ''
 							}
 							`}
-						onClick={() => handleButtonDay(day)}
+						onClick={() => {
+							handleButtonDay(day)
+							setShowPopup(false)
+						}}
 						key={dayNumber}>
 						{dayNumber + 1}
 					</button>

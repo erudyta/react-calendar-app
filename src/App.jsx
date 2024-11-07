@@ -8,6 +8,7 @@ const App = () => {
 	const [currMonth, setCurrMonth] = useState(date.getMonth()) //Current Month
 	const [currYear, setCurrYear] = useState(date.getFullYear()) //Current Year
 	const [selectedDay, setSelectedDay] = useState(`${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`)
+	const [showPopup, setShowPopup] = useState(false)
 
 
 	let firstDay = new Date(currYear, currMonth, 1).getDay() //returns what is the first day of the month
@@ -60,8 +61,9 @@ const App = () => {
 					onMinusMonth={handleMinusMonth}
 					setSelectedDay = {setSelectedDay}
 					selectedDay = {selectedDay}
+					setShowPopup = {setShowPopup}
 				/>
-				<SelectedDay selectedDay={selectedDay}/>
+				<SelectedDay selectedDay={selectedDay} showPopup={showPopup} setShowPopup={setShowPopup}/>
 			</div>
 		</main>
 	)

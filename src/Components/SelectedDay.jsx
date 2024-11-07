@@ -17,8 +17,7 @@ const months = [
 ]
 
 import './selected-day.css'
-const SelectedDay = ({ selectedDay }) => {
-	const [showPopup, setShowPopup] = useState(false)
+const SelectedDay = ({ selectedDay, showPopup, setShowPopup }) => {
 	const arrDate = selectedDay.split('.') // [0] - day, [1] - month, [2] - year
 
 	return (
@@ -30,13 +29,23 @@ const SelectedDay = ({ selectedDay }) => {
 						<h2>{months[arrDate[1]]}</h2>
 						<h2>{arrDate[2]}</h2>
 					</div>
-					<button
-						className='btn-create-event'
-						onClick={() => {
-							setShowPopup(true)
-						}}>
-						Create Event
-					</button>
+					{showPopup ? (
+						<button
+							className='btn-create-event'
+							onClick={() => {
+								setShowPopup(false)
+							}}>
+							Close
+						</button>
+					) : (
+						<button
+							className='btn-create-event'
+							onClick={() => {
+								setShowPopup(true)
+							}}>
+							Create Event
+						</button>
+					)}
 				</div>
 				{showPopup ? (
 					<CreateEvent />
