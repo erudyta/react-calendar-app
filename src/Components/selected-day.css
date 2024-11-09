@@ -115,3 +115,19 @@
 .sd-buttons .bx-edit-alt:hover {
 	color: white;
 }
+
+.sd-noevents{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	row-gap: 2rem;
+	align-items: center;
+	margin: auto auto auto auto;
+	font-size: 1rem;
+}
+
+.sd-noevents button{
+	margin-right: auto;
+	margin-left: auto;
+
+}

@@ -18,7 +18,15 @@ const months = [
 
 import './selected-day.css'
 const SelectedDay = ({ selectedDay, showPopup, setShowPopup }) => {
-	const arrDate = selectedDay.split('.') // [0] - day, [1] - month, [2] - year
+	const [events, setEvents] = useState([])
+	const [editingEvent, setEditingEvent] = useState(null)
+	const arrDate = selectedDay.split('.')
+
+	const eventsOnSelectedDay = events.filter(event => event.day === selectedDay)
+
+	const handleDeleteEvent = id => {
+		setEvents(prev => prev.filter(event => event.id !== id))
+	}
 
 	return (
 		<>
@@ -38,70 +46,64 @@ const SelectedDay = ({ selectedDay, showPopup, setShowPopup }) => {
 							Close
 						</button>
 					) : (
+						eventsOnSelectedDay.length > 0 && (
+							<button
+								className='btn-create-event'
+								onClick={() => {
+									setShowPopup(true)
+									setEditingEvent(null)
+								}}>
+								Create Event
+							</button>
+						)
+					)}
+				</div>
+				{showPopup ? (
+					<CreateEvent
+						selectedDay={selectedDay}
+						events={events}
+						setEvents={setEvents}
+						setShowPopup={setShowPopup}
+						editingEvent={editingEvent}
+						setEditingEvent={setEditingEvent}
+					/>
+				) : eventsOnSelectedDay.length > 0 ? (
+					<div className='sd-events'>
+						<div className='sd-events-inner'>
+							{eventsOnSelectedDay.map(event => (
+								<div key={event.id} className='sd-event'>
+									<h2>{`${event.eventTime.hours}:${event.eventTime.minutes}`}</h2>
+									<div className='sd-event-content'>
+										<h3>{event.eventTitle}</h3>
+										<p>{event.eventDescription}</p>
+									</div>
+									<div className='sd-buttons'>
+										<button
+											onClick={() => {
+												setShowPopup(true)
+												setEditingEvent(event)
+											}}>
+											<i className='bx bx-edit-alt'></i>
+										</button>
+										<button onClick={() => handleDeleteEvent(event.id)}>
+											<i className='bx bx-x'></i>
+										</button>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				) : (
+					<div className='sd-noevents'>
+						<h1>No events created on the selected day</h1>
 						<button
 							className='btn-create-event'
 							onClick={() => {
 								setShowPopup(true)
+								setEditingEvent(null)
 							}}>
-							Create Event
+							Click to create event
 						</button>
-					)}
-				</div>
-				{showPopup ? (
-					<CreateEvent />
-				) : (
-					<div className='sd-events'>
-						<div className='sd-events-inner'>
-							<div className='sd-event'>
-								<h2>12:00</h2>
-								<div className='sd-event-content'>
-									<h3>Title</h3>
-									<p>
-										Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus vel tempora voluptatem nulla in
-										iste porro nihil vitae. At, vero! Ipsam, tenetur corrupti harum exercitationem consectetur modi
-										beatae eligendi iure provident non nesciunt at tempora, laudantium dolorem accusantium fuga ex.
-									</p>
-								</div>
-								<div className='sd-buttons'>
-									<button>
-										<i className='bx bx-edit-alt'></i>
-									</button>
-									<button>
-										<i className='bx bx-x'></i>
-									</button>
-								</div>
-							</div>
-							<div className='sd-event'>
-								<h2>12:00</h2>
-								<div className='sd-event-content'>
-									<h3>Title</h3>
-									<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia, totam!</p>
-								</div>
-								<div className='sd-buttons'>
-									<button>
-										<i className='bx bx-edit-alt'></i>
-									</button>
-									<button>
-										<i className='bx bx-x'></i>
-									</button>
-								</div>
-							</div>
-							<div className='sd-event'>
-								<h2>12:00</h2>
-								<div className='sd-event-content'>
-									<h3></h3>
-									<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis, dolorem!</p>
-								</div>
-								<div className='sd-buttons'>
-									<button>
-										<i className='bx bx-edit-alt'></i>
-									</button>
-									<button>
-										<i className='bx bx-x'></i>
-									</button>
-								</div>
-							</div>
-						</div>
 					</div>
 				)}
 			</div>
