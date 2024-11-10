@@ -28,6 +28,7 @@ const Calendar = ({
 	setSelectedDay,
 	selectedDay,
 	setShowPopup,
+	events,
 }) => {
 	function handleButtonDay(day) {
 		setSelectedDay(prev => day.id)
@@ -59,9 +60,15 @@ const Calendar = ({
 				{arrBlankPlacesInCalendar.map((blank, index) => (
 					<button key={index} className='calendar-daysofmonth-hidden'></button>
 				))}
-				{arrNumberOfDaysInMonth.map((day, dayNumber) => (
-					<button
-						className={`
+				{arrNumberOfDaysInMonth.map((day, dayNumber) => {
+					const dateToCompare = `${dayNumber + 1}.${currMonth}.${currYear}`
+					console.log(dateToCompare)
+					const listOfEventsInDay = events.filter(event => event.day === dateToCompare)
+					console.log(listOfEventsInDay)
+
+					return (
+						<button
+							className={`
 							${
 								dayNumber + 1 === date.getDate() && currMonth === date.getMonth() && currYear === date.getFullYear()
 									? 'curr-day'
@@ -75,14 +82,18 @@ const Calendar = ({
 									: ''
 							}
 							`}
-						onClick={() => {
-							handleButtonDay(day)
-							setShowPopup(false)
-						}}
-						key={dayNumber}>
-						{dayNumber + 1}
-					</button>
-				))}
+							onClick={() => {
+								handleButtonDay(day)
+								setShowPopup(false)
+							}}
+							key={dayNumber}>
+							{dayNumber + 1}
+							{listOfEventsInDay.length > 0 && (
+								<span className='event-counter'>{listOfEventsInDay.length > 9 ? '9+' : listOfEventsInDay.length}</span>
+							)}
+						</button>
+					)
+				})}
 			</div>
 		</div>
 	)

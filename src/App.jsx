@@ -2,14 +2,13 @@ import { useState } from 'react'
 import Calendar from './Components/Calendar.jsx'
 import SelectedDay from './Components/SelectedDay.jsx'
 
-
 const App = () => {
 	const date = new Date() //returns actual date
 	const [currMonth, setCurrMonth] = useState(date.getMonth()) //Current Month
 	const [currYear, setCurrYear] = useState(date.getFullYear()) //Current Year
 	const [selectedDay, setSelectedDay] = useState(`${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`)
 	const [showPopup, setShowPopup] = useState(false)
-
+	const [events, setEvents] = useState([])
 
 	let firstDay = new Date(currYear, currMonth, 1).getDay() //returns what is the first day of the month
 	const numberOfDaysInMonth = new Date(currYear, currMonth + 1, 0).getDate() //returns the maximum number of days in a month
@@ -59,11 +58,18 @@ const App = () => {
 					arrNumberOfDaysInMonth={arrNumberOfDaysInMonth}
 					onPlusMonth={handlePlusMonth}
 					onMinusMonth={handleMinusMonth}
-					setSelectedDay = {setSelectedDay}
-					selectedDay = {selectedDay}
-					setShowPopup = {setShowPopup}
+					setSelectedDay={setSelectedDay}
+					selectedDay={selectedDay}
+					setShowPopup={setShowPopup}
+					events={events}
 				/>
-				<SelectedDay selectedDay={selectedDay} showPopup={showPopup} setShowPopup={setShowPopup}/>
+				<SelectedDay
+					selectedDay={selectedDay}
+					showPopup={showPopup}
+					setShowPopup={setShowPopup}
+					events={events}
+					setEvents={setEvents}
+				/>
 			</div>
 		</main>
 	)

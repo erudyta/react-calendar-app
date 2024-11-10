@@ -17,8 +17,8 @@ const months = [
 ]
 
 import './selected-day.css'
-const SelectedDay = ({ selectedDay, showPopup, setShowPopup }) => {
-	const [events, setEvents] = useState([])
+const SelectedDay = ({ selectedDay, showPopup, setShowPopup, events, setEvents }) => {
+	
 	const [editingEvent, setEditingEvent] = useState(null)
 	const arrDate = selectedDay.split('.')
 

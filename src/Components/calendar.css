@@ -53,7 +53,7 @@
 .calendar-daysofweek {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-    margin-bottom: 1rem;
+	margin-bottom: 1rem;
 	font-size: 1.5rem;
 }
 
@@ -64,32 +64,47 @@
 
 .calendar-daysofmonth {
 	display: grid;
-    align-items: center;
+	align-items: center;
 	grid-template-columns: repeat(7, 1fr);
-    row-gap: 1rem;
+	row-gap: 1rem;
 }
 
-.calendar-daysofmonth-hidden{
+.calendar-daysofmonth-hidden {
 	visibility: hidden;
 }
 
-.calendar-daysofmonth button{
-    width: 70%;
-    aspect-ratio: 1/1;
+.calendar-daysofmonth button {
+	position: relative;
+	width: 70%;
+	aspect-ratio: 1/1;
 	margin-left: auto;
-    margin-right: auto;
+	margin-right: auto;
 	font-size: 1.5rem;
-	transition: background-color .1s, box-shadow .2s;
-}	
+	transition: background-color 0.1s, box-shadow 0.2s;
+}
 
-
-.calendar-daysofmonth button.curr-day{
+.calendar-daysofmonth button.curr-day {
 	background-color: var(--main-color);
 	box-shadow: 0 0 0.3rem 0 #e478a5;
 }
 
 .calendar-daysofmonth button.selected-day,
-.calendar-daysofmonth button:hover{
+.calendar-daysofmonth button:hover {
 	background-color: var(--selected-day);
 	box-shadow: 0 0 0.3rem 0 #000000;
+}
+
+.event-counter {
+	position: absolute;
+	top: -3px;
+	right: -2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 17px;
+	width: 18px;
+	background-color: #e1002d;
+	border: 1px solid black;
+	border-radius: 50%;
+	font-size: 0.9rem;
 }
