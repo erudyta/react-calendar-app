@@ -1,6 +1,7 @@
 .sd-container {
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 	width: 100%;
 }
 
@@ -42,14 +43,13 @@
 	background-color: var(--main-color);
 }
 
-
 .sd-events {
 	position: relative;
 	flex-grow: 1;
 	overflow-y: auto;
 }
 
-.sd-events-inner{
+.sd-events-inner {
 	width: 99%;
 }
 
@@ -62,7 +62,6 @@
 	background-color: rgb(212, 212, 212);
 	border-radius: 100vw;
 	scroll-margin-left: 5px;
-
 }
 
 .sd-events::-webkit-scrollbar-thumb {
@@ -116,7 +115,7 @@
 	color: white;
 }
 
-.sd-noevents{
+.sd-noevents {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -126,8 +125,22 @@
 	font-size: 1rem;
 }
 
-.sd-noevents button{
+.sd-noevents button {
 	margin-right: auto;
 	margin-left: auto;
+}
 
+@media (max-width: 762px) {
+	.sd-events {
+		max-height: 420px;
+	}
+
+	.sd-buttons i {
+		font-size: 1.6rem;
+	}
+	.sd-event{
+		font-size: 1.1rem;
+		padding: 2.2rem 1rem 1.9rem 1rem;
+	}
+	
 }

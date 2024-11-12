@@ -44,7 +44,7 @@
 .ce-form-content input:focus,
 .ce-form-content textarea:focus {
 	outline: none;
-	box-shadow: 0 0 3rem 0 var(--main-color);
+	box-shadow: 0 0 2rem 0 var(--main-color);
 	border: none;
 }
 
@@ -69,6 +69,7 @@
 }
 
 .ce-form-content textarea {
+	min-height: 95px;
 	aspect-ratio: 6/2;
 	resize: none;
 }
@@ -95,4 +96,50 @@
 	font-size: 1.5rem;
 	font-weight: 800;
 	text-transform: uppercase;
+}
+
+@media (max-width: 1200px) {
+	.ce-container {
+		margin-top: 1rem;
+		overflow-y: auto;
+	}
+
+	.ce-header,
+	.ce-container form {
+		width: 70%;
+	}
+
+	.sd-noevents h1 {
+		text-align: center;
+	}
+}
+
+@media (max-width: 768px) {
+	.ce-container {
+		font-size: 1rem;
+	}
+
+	.ce-form-content {
+		row-gap: 0.5rem;
+	}
+
+	.ce-container form {
+		font-size: 1.3rem;
+	}
+
+	.ce-container input {
+		font-size: 1.2rem;
+		padding: 0.7rem;
+	}
+
+	.ce-form-content textarea {
+		min-height: 120px;
+		aspect-ratio: 5/1;
+	}
+}
+
+@media (max-width: 576px) {
+	.ce-form-content textarea {
+		aspect-ratio: 4/1;
+	}
 }

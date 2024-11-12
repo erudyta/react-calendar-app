@@ -1,5 +1,6 @@
 .calendar-container {
 	width: 60%;
+	min-width: 315px;
 	font-size: 1.5rem;
 }
 
@@ -15,12 +16,16 @@
 .calendar-month-year {
 	display: flex;
 	align-items: center;
-	margin: 3rem;
+	margin: 3rem 0 3rem 2rem;
 }
 
-.calendar-month-year div {
+.calendar-month-year div:nth-child(1) {
 	display: flex;
-	column-gap: 3rem;
+}
+
+.calendar-month-year div:nth-child(2) {
+	display: flex;
+	column-gap: 2rem;
 	margin-left: auto;
 }
 
@@ -85,7 +90,7 @@
 
 .calendar-daysofmonth button.curr-day {
 	background-color: var(--main-color);
-	box-shadow: 0 0 0.3rem 0 #e478a5;
+	box-shadow: 0 0 0.3rem 0 #535e59;;
 }
 
 .calendar-daysofmonth button.selected-day,
@@ -96,8 +101,8 @@
 
 .event-counter {
 	position: absolute;
-	top: -3px;
-	right: -2px;
+	top: -5px;
+	right: -4px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -107,4 +112,86 @@
 	border: 1px solid black;
 	border-radius: 50%;
 	font-size: 0.9rem;
+}
+
+@media (max-width: 1200px) {
+	.calendar-month-year {
+		align-items: baseline;
+		flex-direction: column;
+		column-gap: 1rem;
+		margin: 3rem 0 1.5rem 0.5rem;
+	}
+
+	.calendar-month-year div:nth-child(2) {
+		margin: 0;
+	}
+
+	.event-counter {
+		top: -6px;
+		right: -8px;
+	}
+}
+
+@media (max-width: 768px) {
+	.calendar-container {
+		display: flex;
+		justify-content: space-around;
+		width: 100%;	
+	}
+
+	.calendar-container div:nth-of-type(1) {
+		width: 55%;
+		min-width: 315px;
+	}
+
+	.calendar-container h1 {
+		writing-mode: vertical-rl;
+		text-orientation: upright;
+		font-size: 3rem;
+		letter-spacing: 1.1rem;
+	}
+
+	.calendar-month-year {
+		align-items: baseline;
+		margin: 1.5rem 0 1.5rem 0.5rem;
+	}
+
+	.calendar-month-year h2 {
+		font-size: 1.8rem;
+	}
+
+	.calendar-month-year i {
+		font-size: 1.5rem;
+	}
+
+	.calendar-daysofweek {
+		font-size: 1.2rem;
+	}
+
+	.calendar-daysofmonth button {
+		font-size: 1.2rem;
+	}
+}
+
+
+@media (max-width: 410px) {
+	.calendar-container{
+		flex-direction: column;
+	}
+
+	.calendar-container h1 {
+		writing-mode: horizontal-tb;
+		text-orientation: sideways;
+		font-size: 3rem;
+		letter-spacing: 1.1rem;
+	}
+
+	.calendar-month-year {
+		margin: 1rem 0 1rem 0.5rem;
+	}
+
+	.calendar-container div:nth-of-type(1) {
+		width: 100%;
+		min-width:auto;
+	}
 }
